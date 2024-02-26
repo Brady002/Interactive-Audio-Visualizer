@@ -10,6 +10,13 @@ public class ClickPosition : MonoBehaviour
     public GameObject effect;
     public GameObject effect2;
     public List<GameObject> frontFaceEffects = new List<GameObject>();
+    public int numOfPanels = 7;
+
+    [Header("Colors")]
+    public Color orange;
+    public Color purple;
+    public Color pink;
+
 
     private Color matColor;
 
@@ -31,28 +38,26 @@ public class ClickPosition : MonoBehaviour
 
             if(hit.collider != null)
             {
+                
                 Vector3 spawnPoint = new Vector3(hit.point.x, hit.point.y, hit.point.z);
                 effectGO = Instantiate(frontFaceEffects[controller.pick], spawnPoint, hit.transform.rotation);
+                if(controller.selectedColor == 8)
+                {
+                    DynamicColorPicker();
+                }
+                if(controller.selectedColor == 9)
+                {
+                    Color color1 = new Vector4(Random.Range(0.1f, 1f), Random.Range(0.1f, 1f), Random.Range(0.1f, 1f));
+                    Color color2 = new Vector4(Random.Range(0.1f, 1f), Random.Range(0.1f, 1f), Random.Range(0.1f, 1f));
+                    float time = 0;
+                    while(time <= 1f)
+                    {
+                        matColor = new Vector4(Mathf.Lerp(color1.r, color2.r, time), Mathf.Lerp(color1.g, color2.g, time), Mathf.Lerp(color1.b, color2.b, time));
+                        time += Time.deltaTime;
+                    }
+                }
                 colorMaterial = effectGO.GetComponentInChildren<Renderer>().material;
                 colorMaterial.SetColor("_Color", matColor);
-                /*switch (controller.pick)
-                {
-                    case 0:
-                        
-                        effectGO = Instantiate(effect, spawnPoint, hit.transform.rotation);
-                        colorMaterial = effectGO.GetComponentInChildren<Renderer>().material;
-                        colorMaterial.SetColor("_Color", matColor);
-                        break;
-                    case 1:
-                        spawnPoint = new Vector3(hit.point.x, hit.point.y, hit.point.z);
-                        effectGO = Instantiate(effect2, spawnPoint, hit.transform.rotation);
-                        colorMaterial = effectGO.GetComponentInChildren<Renderer>().material;
-                        colorMaterial.SetColor("_Color", matColor);
-                        break;
-                    default:
-                        controller.pick = 0;
-                        break;
-                }*/
                 
             }
         }
@@ -86,11 +91,57 @@ public class ClickPosition : MonoBehaviour
             case 7:
                 matColor = new Vector4(255, 200, 0)/255 * _amplitude;
                 break;
+            case 8:
+                DynamicColorPicker();
+                break;
+            case 9:
+                break;
             default:
                 controller.selectedColor = 0;
                 break;
         }
     }
 
+    private void DynamicColorPicker()
+    {
+        int _amplitude = controller.amplitude;
+        float location = Mathf.Lerp(0f, Screen.width, cam.ScreenToViewportPoint(Input.mousePosition).x);
+        Debug.Log(cam.ScreenToViewportPoint(Input.mousePosition).x);
+        if (location < Screen.width / numOfPanels)
+        {
+            matColor = Color.red * _amplitude;
+            Debug.Log("1");
+        }
+        else if (location >= Screen.width / numOfPanels && location < Screen.width / numOfPanels * 2)
+        {
+            matColor = orange * _amplitude;
+            Debug.Log("2");
+        }
+        else if (location >= Screen.width / numOfPanels * 2 && location < Screen.width / numOfPanels * 3)
+        {
+            matColor = Color.yellow * _amplitude;
+            Debug.Log("3");
+        }
+        else if (location >= Screen.width * 3 / numOfPanels && location < Screen.width / numOfPanels * 4)
+        {
+            matColor = Color.green * _amplitude;
+            Debug.Log("4");
+        }
+        else if (location >= Screen.width * 4 / numOfPanels && location < Screen.width / numOfPanels * 5)
+        {
+            matColor = Color.blue * _amplitude;
+            
+            Debug.Log("5");
+        }
+        else if (location >= Screen.width * 5 / numOfPanels && location < Screen.width / numOfPanels * 6)
+        {
+            matColor = purple * _amplitude;
+            Debug.Log("6");
+        } else
+        {
+            matColor = pink * _amplitude;
+            Debug.Log("7");
+        }
+    }
     
 }

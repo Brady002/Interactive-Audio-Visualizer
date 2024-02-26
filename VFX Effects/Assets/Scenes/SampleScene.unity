@@ -282,6 +282,10 @@ MonoBehaviour:
   - {fileID: 3848021208386192675, guid: c468cc82526f230438b4cebd8247316d, type: 3}
   - {fileID: 2979707737246299939, guid: 6dab41df16e6fe34791a6a40568ce11c, type: 3}
   - {fileID: 3177357482305475091, guid: 123c3f76e309ab24aa889569feb88afe, type: 3}
+  numOfPanels: 7
+  orange: {r: 0, g: 0, b: 0, a: 0}
+  purple: {r: 0, g: 0, b: 0, a: 0}
+  pink: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +553,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -10, z: 0}
-  m_LocalScale: {x: 30, y: 1, z: 30}
+  m_LocalScale: {x: 100, y: 1, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

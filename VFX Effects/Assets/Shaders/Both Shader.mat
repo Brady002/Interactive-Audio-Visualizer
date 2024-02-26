@@ -62,6 +62,7 @@ Material:
     - _CastShadows: 1
     - _Cull: 0
     - _DstBlend: 10
+    - _Float: 22.18
     - _Intersect_Depth: 1.5
     - _Intersect_Power: 5
     - _QueueControl: 0
