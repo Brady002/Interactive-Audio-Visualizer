@@ -22,7 +22,7 @@ public class ClickPosition : MonoBehaviour
 
     private void Start()
     {
-        SetColor(1);
+        SetColor();
     }
     // Update is called once per frame
     void Update()
@@ -41,20 +41,13 @@ public class ClickPosition : MonoBehaviour
                 
                 Vector3 spawnPoint = new Vector3(hit.point.x, hit.point.y, hit.point.z);
                 effectGO = Instantiate(frontFaceEffects[controller.pick], spawnPoint, hit.transform.rotation);
-                if(controller.selectedColor == 8)
+                if(controller.selectedColor < 7)
+                {
+                    SetColor();
+                }
+                if(controller.selectedColor == 7)
                 {
                     DynamicColorPicker();
-                }
-                if(controller.selectedColor == 9)
-                {
-                    Color color1 = new Vector4(Random.Range(0.1f, 1f), Random.Range(0.1f, 1f), Random.Range(0.1f, 1f));
-                    Color color2 = new Vector4(Random.Range(0.1f, 1f), Random.Range(0.1f, 1f), Random.Range(0.1f, 1f));
-                    float time = 0;
-                    while(time <= 1f)
-                    {
-                        matColor = new Vector4(Mathf.Lerp(color1.r, color2.r, time), Mathf.Lerp(color1.g, color2.g, time), Mathf.Lerp(color1.b, color2.b, time));
-                        time += Time.deltaTime;
-                    }
                 }
                 colorMaterial = effectGO.GetComponentInChildren<Renderer>().material;
                 colorMaterial.SetColor("_Color", matColor);
@@ -63,46 +56,12 @@ public class ClickPosition : MonoBehaviour
         }
     }
 
-    public void SetColor(int _amplitude)
+    public void SetColor()
     {
-        switch(controller.selectedColor)
-        {
-            case 0:
-                matColor = Color.white * _amplitude;
-                break;
-            case 1:
-                matColor = Color.red * _amplitude;
-                break;
-            case 2:
-                matColor = Color.green * _amplitude;
-                break;
-            case 3:
-                matColor = Color.blue * _amplitude;
-                break;
-            case 4:
-                matColor = Color.yellow * _amplitude;
-                break;
-            case 5:
-                matColor = Color.magenta * _amplitude;
-                break;
-            case 6:
-                matColor = Color.cyan * _amplitude;
-                break;
-            case 7:
-                matColor = new Vector4(255, 200, 0)/255 * _amplitude;
-                break;
-            case 8:
-                DynamicColorPicker();
-                break;
-            case 9:
-                break;
-            default:
-                controller.selectedColor = 0;
-                break;
-        }
+        matColor = controller.objectColor * controller.amplitude;
     }
 
-    private void DynamicColorPicker()
+    public void DynamicColorPicker()
     {
         int _amplitude = controller.amplitude;
         float location = Mathf.Lerp(0f, Screen.width, cam.ScreenToViewportPoint(Input.mousePosition).x);
@@ -110,12 +69,10 @@ public class ClickPosition : MonoBehaviour
         if (location < Screen.width / numOfPanels)
         {
             matColor = Color.red * _amplitude;
-            Debug.Log("1");
         }
         else if (location >= Screen.width / numOfPanels && location < Screen.width / numOfPanels * 2)
         {
             matColor = orange * _amplitude;
-            Debug.Log("2");
         }
         else if (location >= Screen.width / numOfPanels * 2 && location < Screen.width / numOfPanels * 3)
         {
