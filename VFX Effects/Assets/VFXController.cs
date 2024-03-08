@@ -12,17 +12,22 @@ public class VFXController : MonoBehaviour
     public int selectedColor = 0;
     public int amplitude = 1;
     public ClickPosition clickPosition;
-    public ParticleSystem backgroundParticles;
-    public Material backgroundColor;
+    
     public Color objectColor;
 
     public List<Color> colors = new List<Color>();
 
     [Header("UI and Settings")]
+    public GameObject ui;
+    private bool isUIOn;
     public Slider colorSlider;
     public Slider intensitySlider;
     public Toggle backgroundToggle;
-    
+
+    [Header("Background")]
+    public ParticleSystem backgroundParticles;
+    public Material backgroundColor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,17 +37,25 @@ public class VFXController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyUp(KeyCode.Escape))
+        {
+            isUIOn = !isUIOn;
+            ui.SetActive(isUIOn);
+        }
+
         if (Input.GetKeyUp(KeyCode.Q))
         {
             Application.Quit();
         }
-        if(Input.GetKeyUp(KeyCode.D) && pick < clickPosition.frontFaceEffects.Count - 1) 
+        if(Input.GetKeyUp(KeyCode.D) && pick < clickPosition.effects.Count - 1) 
         {
             pick++;
+            ChangeBackgroundEffect();
         }
         if(Input.GetKeyUp(KeyCode.A) && pick > 0)
         {
             pick--;
+            ChangeBackgroundEffect();
         }
 
         //Set Color
@@ -107,14 +120,9 @@ public class VFXController : MonoBehaviour
         
     }
 
-    public void ToggleBackground()
+    private void ChangeBackgroundEffect()
     {
-        if(backgroundToggle.isOn)
-        {
-            backgroundParticles.Play();
-        } else if (!backgroundToggle.isOn)
-        {
-            backgroundParticles.Stop();
-        }
+        Debug.Log(clickPosition.effects[pick].GetComponent<ShapeBehavior>().shape);
+        backgroundParticles.GetComponent<ParticleSystemRenderer>().mesh = clickPosition.effects[pick].GetComponent<ShapeBehavior>().shape;
     }
 }

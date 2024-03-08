@@ -9,7 +9,7 @@ public class ClickPosition : MonoBehaviour
     public VFXController controller;
     public GameObject effect;
     public GameObject effect2;
-    public List<GameObject> frontFaceEffects = new List<GameObject>();
+    public List<GameObject> effects = new List<GameObject>();
     public int numOfPanels = 7;
 
     [Header("Colors")]
@@ -40,7 +40,7 @@ public class ClickPosition : MonoBehaviour
             {
                 
                 Vector3 spawnPoint = new Vector3(hit.point.x, hit.point.y, hit.point.z);
-                effectGO = Instantiate(frontFaceEffects[controller.pick], spawnPoint, hit.transform.rotation);
+                effectGO = Instantiate(effects[controller.pick], spawnPoint, hit.transform.rotation);
                 if(controller.selectedColor < 7)
                 {
                     SetColor();

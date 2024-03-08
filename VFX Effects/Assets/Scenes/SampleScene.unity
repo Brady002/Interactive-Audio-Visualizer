@@ -5884,11 +5884,13 @@ MonoBehaviour:
   controller: {fileID: 1964602098}
   effect: {fileID: 4411590263184740371, guid: ae9964442066cef449707cd30bcfdcbb, type: 3}
   effect2: {fileID: 3848021208386192675, guid: c468cc82526f230438b4cebd8247316d, type: 3}
-  frontFaceEffects:
+  effects:
   - {fileID: 4411590263184740371, guid: ae9964442066cef449707cd30bcfdcbb, type: 3}
   - {fileID: 3848021208386192675, guid: c468cc82526f230438b4cebd8247316d, type: 3}
   - {fileID: 2979707737246299939, guid: 6dab41df16e6fe34791a6a40568ce11c, type: 3}
-  - {fileID: 3177357482305475091, guid: 123c3f76e309ab24aa889569feb88afe, type: 3}
+  - {fileID: 2979707737246299939, guid: 092e0d85202773f418f796e3195424bd, type: 3}
+  - {fileID: 2979707737246299939, guid: 19c60aaacf82ff44aa347dabe32a260f, type: 3}
+  - {fileID: 2979707737246299939, guid: 350e7d3a465355c43b76d42cb4bc41f2, type: 3}
   numOfPanels: 7
   orange: {r: 1, g: 0.35316706, b: 0, a: 0}
   purple: {r: 0.43643188, g: 0, b: 1, a: 0}
@@ -6259,7 +6261,7 @@ RectTransform:
   m_Father: {fileID: 494423584}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6372,7 +6374,7 @@ ParticleSystemRenderer:
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
-  m_RenderAlignment: 0
+  m_RenderAlignment: 1
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
   m_UseCustomVertexStreams: 0
@@ -6382,7 +6384,7 @@ ParticleSystemRenderer:
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -5495902117074765545, guid: 902c42f7dec32e54c953211b4ea60b13, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -11221,7 +11223,7 @@ RectTransform:
   m_Father: {fileID: 1248420431}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -12256,7 +12258,7 @@ RectTransform:
   m_Father: {fileID: 287898292}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -12758,7 +12760,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1740088931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13082,8 +13084,6 @@ MonoBehaviour:
   selectedColor: 0
   amplitude: 1
   clickPosition: {fileID: 330585548}
-  backgroundParticles: {fileID: 790275154}
-  backgroundColor: {fileID: 2100000, guid: 90fbf8c7db23ab143ba5c49fef18c389, type: 2}
   objectColor: {r: 0, g: 0, b: 0, a: 0}
   colors:
   - {r: 1, g: 1, b: 1, a: 0}
@@ -13093,9 +13093,12 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 1, a: 0}
   - {r: 1, g: 1, b: 0, a: 0}
   - {r: 0, g: 1, b: 1, a: 0}
+  ui: {fileID: 1740088930}
   colorSlider: {fileID: 913060464}
   intensitySlider: {fileID: 324471180}
   backgroundToggle: {fileID: 1646730248}
+  backgroundParticles: {fileID: 790275154}
+  backgroundColor: {fileID: 2100000, guid: 90fbf8c7db23ab143ba5c49fef18c389, type: 2}
 --- !u!4 &1964602099
 Transform:
   m_ObjectHideFlags: 0
@@ -13144,7 +13147,7 @@ RectTransform:
   m_Father: {fileID: 1909130638}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

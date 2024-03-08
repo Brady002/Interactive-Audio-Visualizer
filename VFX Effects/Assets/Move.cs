@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Move : MonoBehaviour
@@ -18,17 +19,10 @@ public class Move : MonoBehaviour
     void Update()
     {
         rb.velocity = Vector3.up * speed;
-    }
-
-    private void OnEnable()
-    {
-        StartCoroutine(Kill());
-    }
-
-    private IEnumerator Kill()
-    {
-        yield return new WaitForSeconds(3);
-        Destroy(this.gameObject);
-        Destroy(this.gameObject.GetComponentInChildren<Renderer>().material);
+        if(rb.transform.position.y > 15)
+        {
+            Destroy(this.gameObject);
+            Destroy(this.gameObject.GetComponentInChildren<Renderer>().material);
+        }
     }
 }
