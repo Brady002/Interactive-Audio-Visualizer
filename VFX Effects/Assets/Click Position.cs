@@ -65,7 +65,6 @@ public class ClickPosition : MonoBehaviour
     {
         int _amplitude = controller.amplitude;
         float location = Mathf.Lerp(0f, Screen.width, cam.ScreenToViewportPoint(Input.mousePosition).x);
-        Debug.Log(cam.ScreenToViewportPoint(Input.mousePosition).x);
         if (location < Screen.width / numOfPanels)
         {
             matColor = Color.red * _amplitude;

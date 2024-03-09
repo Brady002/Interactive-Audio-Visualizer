@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class VFXController : MonoBehaviour
 {
@@ -12,10 +13,17 @@ public class VFXController : MonoBehaviour
     public int selectedColor = 0;
     public int amplitude = 1;
     public ClickPosition clickPosition;
-    
+    public Camera cam;
     public Color objectColor;
 
     public List<Color> colors = new List<Color>();
+
+    [Header("Sound")]
+    [SerializeField]public bool pentatonic = false;
+    public float[] location = new float[8];
+    public float bottomBuffer;
+    public float topBuffer;
+    public GameObject dividerLines;
 
     [Header("UI and Settings")]
     public GameObject ui;
@@ -23,15 +31,26 @@ public class VFXController : MonoBehaviour
     public Slider colorSlider;
     public Slider intensitySlider;
     public Toggle backgroundToggle;
+    private bool isBackgroundOn = true;
+    public Toggle musicModeToggle;
+    public Toggle guidelineToggle;
 
     [Header("Background")]
     public ParticleSystem backgroundParticles;
     public Material backgroundColor;
 
+    public GameObject[] dividers = new GameObject[8]; //Needs to be same length as location array
+
     // Start is called before the first frame update
     void Start()
     {
+        for (int y = 0; y < location.Length; y++)
+        {
+            dividers[y] = Instantiate(dividerLines, new Vector3(0f, -9f, 0), transform.rotation);
+        }
         Color();
+        ToggleScale();
+        ToggleGuideLines();
     }
 
     // Update is called once per frame
@@ -124,5 +143,68 @@ public class VFXController : MonoBehaviour
     {
         Debug.Log(clickPosition.effects[pick].GetComponent<ShapeBehavior>().shape);
         backgroundParticles.GetComponent<ParticleSystemRenderer>().mesh = clickPosition.effects[pick].GetComponent<ShapeBehavior>().shape;
+    }
+
+    private void MusicScale()
+    {
+        if(pentatonic)
+        {
+            for(int i = 0; i < 6; i++)
+            { 
+                if(i == 0)
+                {
+                    location[i] = bottomBuffer;
+                }
+                float newLocation = Mathf.Lerp(-5 + bottomBuffer, 5 - topBuffer, cam.ScreenToViewportPoint(new Vector2(0f, Screen.height / 5 * i)).y);
+                location[i] = newLocation;
+                float yValue = location[i];
+                dividers[i].transform.position = new Vector3(0f, -9f, yValue);
+            }
+        } else
+        {
+            for(int i = 0; i < location.Length; i++)
+            {
+                if (i == 0)
+                {
+                    location[i] = bottomBuffer;
+                }
+                float newLocation = Mathf.Lerp(-5 + bottomBuffer, 5 - topBuffer, cam.ScreenToViewportPoint(new Vector2(0f, Screen.height / 7 * i)).y);
+                location[i] = newLocation;
+                float yValue = location[i];
+                dividers[i].transform.position = new Vector3(0f, -9f, yValue);
+            }
+        }
+    }
+
+    public void ToggleBackground()
+    {
+        if(isBackgroundOn)
+        {
+            backgroundParticles.Stop();
+        } else
+        {
+            backgroundParticles.Play();
+        }
+    }
+
+    public void ToggleScale()
+    {
+        pentatonic = musicModeToggle.isOn;
+        MusicScale();
+        if(pentatonic)
+        {
+            for(int k = 6; k < dividers.Length; k++)
+            {
+                dividers[k].transform.position = new Vector3(0f, -15f, 0f);
+            }
+        }
+    }
+
+    public void ToggleGuideLines()
+    {
+        for(int u = 0; u < dividers.Length; u++)
+        {
+            dividers[u].SetActive(guidelineToggle.isOn);
+        }
     }
 }

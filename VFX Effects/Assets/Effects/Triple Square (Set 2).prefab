@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7811817957102249030}
@@ -1170,81 +1170,9 @@ MonoBehaviour:
   m_Mesh: {fileID: 0}
   m_VersionIndex: 3410
   m_IsSelectable: 1
-  m_SelectedFaces: 050000000b000000100000000e0000000c0000001a00000018000000170000001c000000
-  m_SelectedEdges:
-  - a: 20
-    b: 21
-  - a: 22
-    b: 20
-  - a: 21
-    b: 23
-  - a: 23
-    b: 22
-  - a: 44
-    b: 45
-  - a: 46
-    b: 44
-  - a: 45
-    b: 47
-  - a: 47
-    b: 46
-  - a: 64
-    b: 65
-  - a: 66
-    b: 64
-  - a: 65
-    b: 67
-  - a: 67
-    b: 66
-  - a: 56
-    b: 57
-  - a: 58
-    b: 56
-  - a: 57
-    b: 59
-  - a: 59
-    b: 58
-  - a: 48
-    b: 49
-  - a: 50
-    b: 48
-  - a: 49
-    b: 51
-  - a: 51
-    b: 50
-  - a: 104
-    b: 105
-  - a: 106
-    b: 104
-  - a: 105
-    b: 107
-  - a: 107
-    b: 106
-  - a: 96
-    b: 97
-  - a: 98
-    b: 96
-  - a: 97
-    b: 99
-  - a: 99
-    b: 98
-  - a: 92
-    b: 93
-  - a: 94
-    b: 92
-  - a: 93
-    b: 95
-  - a: 95
-    b: 94
-  - a: 112
-    b: 113
-  - a: 114
-    b: 112
-  - a: 113
-    b: 115
-  - a: 115
-    b: 114
-  m_SelectedVertices: 140000001500000016000000170000002c0000002d0000002e0000002f0000004000000041000000420000004300000038000000390000003a0000003b0000003000000031000000320000003300000068000000690000006a0000006b000000600000006100000062000000630000005c0000005d0000005e0000005f00000070000000710000007200000073000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!114 &2428796539146249036
 MonoBehaviour:
   m_ObjectHideFlags: 0
