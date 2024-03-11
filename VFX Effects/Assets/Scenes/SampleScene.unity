@@ -1129,7 +1129,7 @@ MonoBehaviour:
   - {fileID: 2979707737246299939, guid: 19c60aaacf82ff44aa347dabe32a260f, type: 3}
   - {fileID: 2979707737246299939, guid: 350e7d3a465355c43b76d42cb4bc41f2, type: 3}
   - {fileID: 2979707737246299939, guid: 852c91b6430b99746820d205f689d9dc, type: 3}
-  - {fileID: 2979707737246299939, guid: 8feea523e1c14834f9f76eb2f8733aca, type: 3}
+  - {fileID: 2979707737246299939, guid: 246bdd7503ea2e1408954ba3fb29b09f, type: 3}
   numOfPanels: 7
   orange: {r: 1, g: 0.35316706, b: 0, a: 0}
   purple: {r: 0.43643188, g: 0, b: 1, a: 0}
@@ -8962,7 +8962,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  bottomBuffer: 1
+  bottomBuffer: 2
   topBuffer: 2
   dividerLines: {fileID: 1349686237988638876, guid: 7aa1d090838213745a246087ac6b8b8a,
     type: 3}
