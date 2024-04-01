@@ -1126,11 +1126,10 @@ MonoBehaviour:
   - {fileID: 3848021208386192675, guid: c468cc82526f230438b4cebd8247316d, type: 3}
   - {fileID: 2979707737246299939, guid: 6dab41df16e6fe34791a6a40568ce11c, type: 3}
   - {fileID: 2979707737246299939, guid: 092e0d85202773f418f796e3195424bd, type: 3}
-  - {fileID: 2979707737246299939, guid: 19c60aaacf82ff44aa347dabe32a260f, type: 3}
+  - {fileID: 4411590263184740371, guid: 64af5d28d573a064694669a027fe6e71, type: 3}
   - {fileID: 2979707737246299939, guid: 350e7d3a465355c43b76d42cb4bc41f2, type: 3}
-  - {fileID: 2979707737246299939, guid: 852c91b6430b99746820d205f689d9dc, type: 3}
   - {fileID: 2979707737246299939, guid: 246bdd7503ea2e1408954ba3fb29b09f, type: 3}
-  numOfPanels: 7
+  numOfPanels: 5
   orange: {r: 1, g: 0.35316706, b: 0, a: 0}
   purple: {r: 0.43643188, g: 0, b: 1, a: 0}
   pink: {r: 1, g: 0, b: 0.90971565, a: 0}

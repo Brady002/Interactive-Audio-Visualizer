@@ -58,8 +58,8 @@ public class VFXController : MonoBehaviour
     {
         if(Input.GetKeyUp(KeyCode.Escape))
         {
-            isUIOn = !isUIOn;
-            ui.SetActive(isUIOn);
+            ToggleUI();
+            
         }
 
         if (Input.GetKeyUp(KeyCode.Q))
@@ -185,6 +185,7 @@ public class VFXController : MonoBehaviour
         {
             backgroundParticles.Play();
         }
+        isBackgroundOn = !isBackgroundOn;
     }
 
     public void ToggleScale()
@@ -206,5 +207,12 @@ public class VFXController : MonoBehaviour
         {
             dividers[u].SetActive(guidelineToggle.isOn);
         }
+    }
+
+    private void ToggleUI()
+    {
+        isUIOn = !isUIOn;
+        ui.SetActive(isUIOn);
+        Cursor.visible = isUIOn;
     }
 }
