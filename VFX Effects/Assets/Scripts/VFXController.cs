@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
 
 public class VFXController : MonoBehaviour
 {
@@ -17,6 +15,10 @@ public class VFXController : MonoBehaviour
     public Color objectColor;
 
     public List<Color> colors = new List<Color>();
+
+    [Header("Timer Settings")]
+    private bool isTimerOn = false;
+    public float duration;
 
     [Header("Sound")]
     [SerializeField]public bool pentatonic = false;
@@ -40,11 +42,9 @@ public class VFXController : MonoBehaviour
     public Material backgroundColor;
 
     public GameObject[] dividers = new GameObject[8]; //Needs to be same length as location array
-
-    // Start is called before the first frame update
     void Start()
     {
-        for (int y = 0; y < location.Length; y++)
+        for (int y = 0; y < location.Length; y++) //Adds divider lines to the scene
         {
             dividers[y] = Instantiate(dividerLines, new Vector3(0f, -9f, 0), transform.rotation);
         }
@@ -66,6 +66,7 @@ public class VFXController : MonoBehaviour
         {
             Application.Quit();
         }
+
         if(Input.GetKeyUp(KeyCode.D) && pick < clickPosition.effects.Count - 1) 
         {
             pick++;
@@ -81,7 +82,7 @@ public class VFXController : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.W))
         {
-            if(selectedColor < colors.Count + 1)
+            if(selectedColor < colors.Count + 1) // + 2 is for additional effects.
             {
                 selectedColor++;
             } else
@@ -93,6 +94,7 @@ public class VFXController : MonoBehaviour
             Color();
             SelectNewColor();
         }
+
         if (Input.GetKeyUp(KeyCode.S))
         {
             if (selectedColor >= 0)
@@ -109,6 +111,8 @@ public class VFXController : MonoBehaviour
             SelectNewColor();
         }
 
+        //Set Intensity
+
         if(Input.GetKeyUp(KeyCode.UpArrow) && amplitude < 15)
         {
             amplitude++;
@@ -120,6 +124,11 @@ public class VFXController : MonoBehaviour
             amplitude--;
             intensitySlider.value = amplitude;
             SelectNewColor();
+        }
+
+        if (Input.GetKeyUp(KeyCode.P))
+        {
+            ToggleTimer();
         }
 
     }
@@ -145,7 +154,7 @@ public class VFXController : MonoBehaviour
         backgroundParticles.GetComponent<ParticleSystemRenderer>().mesh = clickPosition.effects[pick].GetComponent<ShapeBehavior>().shape;
     }
 
-    private void MusicScale()
+    private void MusicScale() //This entire function is for setting the position of the divider lines. Actual audio is determined in the PlaySound script.
     {
         if(pentatonic)
         {
@@ -194,7 +203,7 @@ public class VFXController : MonoBehaviour
         MusicScale();
         if(pentatonic)
         {
-            for(int k = 6; k < dividers.Length; k++)
+            for(int k = 6; k < dividers.Length; k++) //Moves unneeded guidelines off camera.
             {
                 dividers[k].transform.position = new Vector3(0f, -15f, 0f);
             }
@@ -214,5 +223,35 @@ public class VFXController : MonoBehaviour
         isUIOn = !isUIOn;
         ui.SetActive(isUIOn);
         Cursor.visible = isUIOn;
+    }
+
+    private void ToggleTimer()
+    {
+        isTimerOn = !isTimerOn;
+        if(isTimerOn)
+        {
+            StartCoroutine(ColorTimer());
+        } else
+        {
+            StopAllCoroutines();
+        }
+    }
+
+    private IEnumerator ColorTimer()
+    {
+        yield return new WaitForSeconds(duration);
+        if (selectedColor < colors.Count - 1)
+        {
+            selectedColor++;
+        }
+        else
+        {
+            selectedColor = 0;
+        }
+
+        colorSlider.value = (int)selectedColor;
+        Color();
+        SelectNewColor();
+        StartCoroutine(ColorTimer()); //Repeats the sequence
     }
 }

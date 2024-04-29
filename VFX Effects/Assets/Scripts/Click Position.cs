@@ -49,6 +49,10 @@ public class ClickPosition : MonoBehaviour
                 {
                     DynamicColorPicker();
                 }
+                if(controller.selectedColor == 8)
+                {
+                    matColor = controller.colors[Random.Range(0, 6)];
+                }
                 colorMaterial = effectGO.GetComponentInChildren<Renderer>().material;
                 colorMaterial.SetColor("_Color", matColor);
                 
